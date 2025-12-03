@@ -1,16 +1,56 @@
-# React + Vite
+# IoT Platform Frontend (React + Tailwind)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The dashboard visualization for the IVY Tech IoT Platform. It provides a real-time interface for operators to monitor fleet health, visualize telemetry data, and configure alert thresholds dynamically.
 
-Currently, two official plugins are available:
+## 🛠️ Tech Stack
+* **Framework:** React 18
+* **Build Tool:** Vite
+* **Styling:** Tailwind CSS
+* **HTTP Client:** Axios
+* **Hosting:** Azure Static Web Apps
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
+* Node.js (v18+) installed
 
-## Expanding the ESLint configuration
+1. Installation
+Navigate to the frontend directory and install dependencies:
+```bash
+cd iot-platform-frontend
+npm install
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+2. Configuration (Connecting to Backend)
+The frontend needs to know where the API is running. Open src/api/deviceApi.js and check the API_URL constant.
+
+For Local Development:
+
+JavaScript
+
+// src/api/deviceApi.js
+const API_URL = 'http://localhost:3000/api'; 
+For Azure Production: Update this URL to point to your deployed Azure App Service before building:
+
+JavaScript
+
+const API_URL = '[https://your-app-service-name.azurewebsites.net/api](https://your-app-service-name.azurewebsites.net/api)';
+3. Running the App
+Start the development server:
+
+Bash
+
+npm run dev
+The dashboard will launch at http://localhost:5173.
+
+Project Structure
+src/api/: Centralized API calls (fetchDevices, fetchTelemetry, updateDevice).
+
+src/pages/:
+
+DeviceListPage.jsx: Main dashboard with fleet summary widgets and the "Add Device" form.
+
+DeviceDetailPage.jsx: Deep-dive analysis view showing telemetry history tables and the configuration form.
+
+src/components/: Reusable UI elements (Card, Button, Table, Badge) built with Tailwind CSS.
